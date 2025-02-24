@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '417908714741633',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v20.0'
+      });
+    };
+  </script>
+
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js">
+  </script>
+
+  <script>
+    // Facebook Login with JavaScript SDK
+    function launchWhatsAppSignup() {
+      // Launch Facebook login
+      FB.login(function (response) {
+        if (response.authResponse) {
+          const accessToken = response.authResponse.accessToken;
+          // Use this token to call the debug_token API and get the shared WABA's ID
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
+        }
+      }, {
+        config_id: '1586579155554263', // Configuration ID obtained in the previous step goes here
+        response_type: 'code',    // Must be set to 'code' for System User access token
+        override_default_response_type: true,
+        extras: {
+          setup: {
+            solutionID: '570977052606154' // Solution ID goes here
+          }
+        }
+      });
+    }
+  </script>
+  <button onclick="launchWhatsAppSignup()" style="background-color: #1877F2;
+         border: 0;
+         border-radius: 4px;
+         color: #fff;
+         cursor: pointer;
+         font-family: Helvetica, Arial, sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         height: 40px;
+         padding: 0 24px;">
+    Login with Facebook
+  </button>
+</body>
+
+</html>
